@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 信息密度 · 数据叙事</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf7f2;
+      font-family: "Noto Serif SC", "Source Han Serif CN", "Songti SC", Georgia, "Times New Roman", serif;
+      color: #2c2b26;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fffdf9;
+      border-radius: 28px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.03);
+      padding: 2.8rem 2.4rem;
+    }
+
+    /* hero 横幅 ———— 杂志式引言 */
+    .hero {
+      border-left: 6px solid #b8a287;
+      padding-left: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 450;
+      letter-spacing: 0.06em;
+      color: #302b24;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .subhead {
+      font-size: 1rem;
+      color: #736b5f;
+      border-bottom: 1px solid #e6dfd5;
+      padding-bottom: 1rem;
+      display: inline-block;
+    }
+
+    /* 背景说明卡片 ———— 引用块风格 */
+    .background-box {
+      background: #f3efe9;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      margin: 1.8rem 0 2.5rem 0;
+      position: relative;
+    }
+
+    .background-box::before {
+      content: "▎";
+      position: absolute;
+      left: 0.6rem;
+      top: 1.2rem;
+      font-size: 2rem;
+      color: #b19f86;
+      opacity: 0.3;
+    }
+
+    .background-box p {
+      font-size: 0.98rem;
+      color: #3f3a32;
+      margin-bottom: 0.6rem;
+    }
+
+    .background-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .background-box strong {
+      font-weight: 600;
+      color: #4f4538;
+    }
+
+    /* 三段自然介绍 ———— 杂志网格 */
+    .magazine-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin-top: 0.8rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .mag-item {
+      flex: 1 1 220px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.6rem 1.4rem 1.4rem 1.4rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: all 0.1s ease;
+    }
+
+    .mag-item:hover {
+      background: #fcf9f4;
+      box-shadow: 0 4px 14px rgba(80,70,55,0.04);
+    }
+
+    .mag-item h3 {
+      font-size: 1.15rem;
+      font-weight: 550;
+      letter-spacing: 0.02em;
+      color: #423c33;
+      border-bottom: 2px solid #e3d8cb;
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .mag-item p {
+      font-size: 0.94rem;
+      color: #3e3a34;
+    }
+
+    .mag-item .label {
+      display: inline-block;
+      background: #e8dfd2;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #51493e;
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* 提示框 / FAQ 摘要 */
+    .insight-panel {
+      background: #ede7dd;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      margin: 2.4rem 0 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .insight-left {
+      flex: 2 1 200px;
+    }
+
+    .insight-left h4 {
+      font-size: 1.1rem;
+      font-weight: 550;
+      color: #3b352b;
+      margin-bottom: 0.5rem;
+    }
+
+    .insight-left p {
+      font-size: 0.93rem;
+      color: #4b453b;
+    }
+
+    .insight-right {
+      flex: 1 1 160px;
+      background: #fffdf9;
+      border-radius: 40px;
+      padding: 0.8rem 1.2rem;
+      text-align: center;
+    }
+
+    .insight-right span {
+      display: block;
+      font-size: 0.85rem;
+      color: #5f5547;
+      font-weight: 400;
+    }
+
+    .insight-right .big-num {
+      font-size: 1.9rem;
+      font-weight: 350;
+      color: #3f382e;
+      line-height: 1.2;
+    }
+
+    /* 页尾访问提示 —— 自然句子 + 链接 */
+    .footer-note {
+      margin-top: 1.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid #dbd2c5;
+      font-size: 0.95rem;
+      color: #5b5347;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .footer-note a {
+      color: #6f624f;
+      text-decoration: none;
+      border-bottom: 1px dotted #b7aa96;
+      transition: border 0.15s;
+    }
+
+    .footer-note a:hover {
+      border-bottom: 1px solid #6f624f;
+    }
+
+    .footer-tagline {
+      font-style: italic;
+      color: #928676;
+      letter-spacing: 0.02em;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .container {
+        padding: 1.8rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero {
+        padding-left: 1rem;
+      }
+      .background-box {
+        padding: 1.2rem 1.4rem;
+      }
+      .magazine-grid {
+        gap: 1.2rem;
+      }
+      .insight-panel {
+        padding: 1.4rem 1.4rem;
+        flex-direction: column;
+      }
+      .insight-right {
+        align-self: flex-start;
+      }
+      .footer-note {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- hero 横幅 -->
+    <div class="hero">
+      <h1>雷速 · 数据之下</h1>
+      <div class="subhead">信息密度与叙事节奏</div>
+    </div>
+
+    <!-- 背景说明：从关键词背后的内容展开 -->
+    <div class="background-box">
+      <p><strong>「雷」</strong> —— 瞬时信号的强度与频次；<strong>「速」</strong> —— 信息流转的时间尺度。当两个字并置，指向的并非单一工具或服务，而是一种对动态数据环境的观察方式：如何从离散的节点中识别趋势，如何在高频变动里保持判断的克制。</p>
+      <p>我们所谈论的<a href="https://www--leisu.com" style="color:#6f624f;border-bottom:1px dotted #b7aa96; text-decoration:none;">雷速</a>，更接近于一种分析框架的索引 —— 它记录着结构化信息在真实场景中的分布、延迟与响应。以下三个剖面，提供一组简化的切片。</p>
+    </div>
+
+    <!-- 三段自然介绍 杂志卡片 -->
+    <div class="magazine-grid">
+      <div class="mag-item">
+        <h3>频次 · 阈值</h3>
+        <p>高密度信号并不总是意味着高价值。在连续数据流中，区分常态波动与结构性偏移，是判断力的起点。雷速的观察角度强调对频次的量化审视，而非对峰值的即时反应。</p>
+        <span class="label">分布特征</span>
+      </div>
+      <div class="mag-item">
+        <h3>延迟 · 异步</h3>
+        <p>信息到达的时刻与解读的时刻之间存在天然滞后。承认延迟的存在，并将异步性纳入分析模型，能减少误判。不同节点间的节奏差，往往比绝对速度透露更多背景。</p>
+        <span class="label">时序逻辑</span>
+      </div>
+      <div class="mag-item">
+        <h3>语境 · 粒度</h3>
+        <p>脱离语境的数字只是噪声。同一组数值，在不同颗粒度下呈现截然不同的叙事。雷速所关注的内容主题，始终强调将数据放回其产生的具体场景中再讨论。</p>
+        <span class="label">解读层次</span>
+      </div>
+    </div>
+
+    <!-- 提示框 / FAQ 摘要 -->
+    <div class="insight-panel">
+      <div class="insight-left">
+        <h4>常见疑问摘要</h4>
+        <p>问：雷速是否指向某个固定平台或应用？<br>
+        答：不严格限定。该关键词目前更多作为一类分析视角的代号，涵盖信息密度、响应节奏与信号结构等议题。</p>
+        <p style="margin-top:0.5rem;">问：如何理解信息密度与叙事的关系？<br>
+        答：密度本身不构成叙事，密度在时间轴上的分布模式才产生可读的故事线。</p>
+      </div>
+      <div class="insight-right">
+        <span class="big-num">3</span>
+        <span>分析剖面</span>
+      </div>
+    </div>
+
+    <!-- 页尾访问提示 —— 自然嵌入句子 -->
+    <div class="footer-note">
+      <span>关于该主题的持续记录与数据笔记，可参阅 <a href="https://www--leisu.com">雷速</a> 所整理的背景文档与片段分析。</span>
+      <span class="footer-tagline">保持低噪 · 保持密度</span>
+    </div>
+  </div>
+</body>
+</html>
